@@ -1,0 +1,132 @@
+<div class=" container pt-5   ">
+  <div class="row mt-5 ">
+    <div class="  col-md-12">
+      <div class=" item">
+        <!-- button  search pipe -->
+        <form action="" class="">
+          <input [(ngModel)]='term' [ngModelOptions]="{standalone: true}" type="text"
+            class="   inputSearch text-black bg-info form-control" placeholder=" Search...">
+        </form>
+      </div>
+    </div>
+    <!--  botton add -->
+    <div class=" btnAdd my-3" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button type="button" ata-bs-toggle="modal" data-bs-target="#exampleModal" class=" btn btn-info float-end"> <span
+          class=" fw-bold me-2">ADD</span> <i class="fa-solid fa-notes-medical text-success"></i></button>
+    </div>
+    <!-- loop  -->
+    <div *ngFor=" let news of dataNew|serachnews:term" class="   mt-5 pt-5 col-md-4">
+      <div class="new shadow-lg">
+        <h2 class=" pb-2 pt-2 text-black text-center title rounded-3">{{news.title}}</h2>
+        <p class="  text-center  text-white"> {{news.desc.slice(0,200)}}</p>
+        <div class="   d-flex">
+          <button routerLink="/details/{{news._id}}"
+            class=" mb-2 btnNew btn text-center mx-auto d-flex justify-content-center fw-bolder">
+            <div class=" d-flex justify-content-center align-items-center">
+              <span> Read More</span> <i class="fa-solid fa-arrow-right-long ms-2 iconReadMore"></i>
+            </div>
+          </button>
+          <!-- delete  -->
+          <button (click)="delete(news._id)"
+            class="mb-2 btnNew btn text-center mx-auto d-flex justify-content-center fw-bolder"> <i
+              class="fa-solid fa-trash-can text-danger fs-3"></i></button>
+              <!--  update -->
+          <button (click)="idEdit(news._id)" data-bs-toggle="modal" data-bs-target="#edit"
+            class="mb-2 btnNew btn text-center mx-auto d-flex justify-content-center fw-bolder"><i
+              class="fa-solid fa-pen-clip text-success fs-3"></i></button>
+        </div>
+        <h6 class=" pb-3 mt-1 text-black text-center  rounded-3">{{news.createdAt|date }}</h6>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- model add -->
+<div class="modal fade mt-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">NEWS</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formNews" (ngSubmit)="addNote()">
+          <div class=" container">
+            <div class=" item">
+              <label for="title" class=" fw-bolder">TITLE</label>
+              <input id="title" formControlName='title' type="text" class=" form-control" placeholder="title">
+              <p class=" text-success"> maxLength is 15 </p>
+              <div *ngIf="formNews.get('title')?.errors &&formNews.get('title')?.touched"
+                class=" text-center text-danger">
+                <p *ngIf="formNews.get('title')?.errors?.['required']">title is required</p>
+                <p *ngIf="formNews.get('title')?.errors?.['minLength']">minLength is 5 </p>
+                <p *ngIf="formNews.get('title')?.errors?.['maxLength']">maxLength is 15 </p>
+              </div>
+              <!-- ////////////// -->
+              <label for="desc" class=" fw-bolder">description</label>
+              <p class=" text-success"> minLength is 20 </p>
+              <textarea id="desc" formControlName='desc' class=" textDesc form-control"></textarea>
+              <div *ngIf="formNews.get('desc')?.errors &&formNews.get('desc')?.touched"
+                class=" text-center text-danger">
+                <p *ngIf="formNews.get('desc')?.errors?.['required']">desc is required</p>
+                <p *ngIf="formNews.get('desc')?.errors?.['minLength']">minLength is 20 </p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer mt-1">
+            <button (click)="clear()" [disabled]="formNews.invalid" type="submit" class="btn btn-primary fw-bold"
+              data-bs-dismiss="modal">ADD</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ModalEdit -->
+<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class=" container">
+          <form [formGroup]="editNews" (ngSubmit)="updateNews()">
+            <div class=" container">
+
+              <div class=" item">
+                <label for="title" class=" fw-bolder">TITLE</label>
+                <input id="editTitle" formControlName='title' type="text" class=" form-control" placeholder="title">
+                <div *ngIf="editNews.get('title')?.errors &&editNews.get('title')?.touched"
+                  class=" text-center text-danger">
+                  <p *ngIf="editNews.get('title')?.errors?.['required']">title is required</p>
+                  <p *ngIf="editNews.get('title')?.errors?.['minLength']">minLength is 5 </p>
+                  <p *ngIf="editNews.get('title')?.errors?.['maxLength']">maxLength is 50 </p>
+                </div>
+                <!-- ////////////// -->
+                <label for="desc" class=" fw-bolder">description</label>
+                <textarea id="editDesc" formControlName='desc' class=" textDesc form-control"></textarea>
+                <div *ngIf="editNews.get('desc')?.errors &&editNews.get('desc')?.touched"
+                  class=" text-center text-danger">
+                  <p *ngIf="editNews.get('desc')?.errors?.['required']">desc is required</p>
+                  <p *ngIf="editNews.get('desc')?.errors?.['minLength']">minLength is 20 </p>
+
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer mt-1">
+
+              <button [disabled]="editNews.invalid" type="submit" class="btn btn-primary fw-bold"
+                data-bs-dismiss="modal">Edit</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+.navbar{
+    position: fixed;
+    right: 0;
+    left: 0;
+    background: linear-gradient(-32deg, rgb(63, 102, 227), rgb(183, 100, 185)) !important;
+
+}
+.nav-link{
+    cursor: pointer !important;
+}

@@ -1,0 +1,64 @@
+<div class=" container pt-5">
+    <div class=" row mt-3 justify-content-center">
+        <div class=" col-md-10 w-50 mt-5 pt-5">
+            <div class=" item shadow-lg">
+
+                <div *ngIf="errApi">
+
+                    <h3 class=" text-center text-danger"> {{errApi}}</h3>
+                </div>
+                <div *ngIf="successApi">
+
+                    <h3 class=" alert alert-success text-center">{{successApi}}</h3>
+                </div>
+
+                <form [formGroup]="RegisterForm " (ngSubmit)="register()">
+                    <label for="name" class="mb-2 fw-bold">Name</label>
+                    <input id="name" formControlName="name" type="name" class=" mb-4 form-control">
+                    <div *ngIf="RegisterForm.get('name')?.errors &&RegisterForm.get('name')?.touched "
+                        class=" text-danger">
+                        <p *ngIf="RegisterForm.get('name')?.errors?.['require']">name is require</p>
+                        <p *ngIf="RegisterForm.get('name')?.errors?.['maxLength']">name maxLength 20</p>
+                        <p *ngIf="RegisterForm.get('name')?.errors?.['minlength']">name minlength 3 </p>
+                    </div>
+
+                    <label for="email" class="mb-2 fw-bold">Email</label>
+                    <input id="email" formControlName="email" type="email" class=" mb-4 form-control">
+                    <div *ngIf="RegisterForm.get('email')?.errors &&RegisterForm.get('email')?.touched "
+                        class=" text-danger">
+                        <p *ngIf="RegisterForm.get('email')?.errors?.['required']">email is require</p>
+                        <p *ngIf="RegisterForm.get('email')?.errors?.['email']">email must be in the right formal </p>
+                    </div>
+
+                    <label for="password" class=" fw-bold mb-2">Password</label>
+                    <input id="password" formControlName="password" type="password" class=" mb-4 form-control">
+                    <div *ngIf="RegisterForm.get('password')?.errors &&RegisterForm.get('password')?.touched " class=" text-danger">
+                        <p *ngIf="RegisterForm.get('password')?.errors?.['required']" >password is require</p>
+                       
+                     </div>  
+
+
+                    <label for="age" class=" fw-bold mb-2">Age</label>
+                    <input id="age" formControlName="age" type="number" class=" form-control">
+                    <div *ngIf="RegisterForm.get('age')?.errors &&RegisterForm.get('age')?.touched "
+                        class=" text-danger">
+                        <p *ngIf="RegisterForm.get('age')?.errors?.['required']">age is require</p>
+                        <p *ngIf="RegisterForm.get('age')?.errors?.['min']">age must be min 16 </p>
+                    </div>
+                    <p class=" float-end text-black my-1"> <a routerLink="/login"> Already i have account</a> </p>
+                    <div class=" clearfix"></div>
+                    <button type="submit" [disabled]="RegisterForm.invalid"
+                        class=" btn btn-secondary mt-3 w-50 mx-auto d-flex justify-content-center">
+
+
+
+                        Login</button>
+                </form>
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>

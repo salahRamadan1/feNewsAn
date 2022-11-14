@@ -1,0 +1,26 @@
+.inputSearch{
+    border: none !important;
+}
+.new{
+ 
+    overflow: hidden;
+}
+.title {
+    background-color: rgb(220, 106, 222);
+         border-top: solid 2px rgba(252, 3, 177, 0.797);
+  
+
+         border-radius: 20px;
+}
+ 
+.btnNew{
+    background: linear-gradient(-32deg, rgb(69, 104, 220), rgb(176, 106, 179)) !important;
+}
+.titleName{
+     
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(  -50%);
+    
+}

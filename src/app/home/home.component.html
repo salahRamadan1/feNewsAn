@@ -1,0 +1,43 @@
+<div class=" container pt-5   ">
+
+    <div class="row mt-5 ">
+
+        <div class="  col-md-12">
+            <div class=" item">
+                <form action="" class="">
+                    <input [(ngModel)]='term' [ngModelOptions]="{standalone: true}" type="text"
+                        class="   inputSearch text-black bg-info form-control" placeholder=" Search...">
+
+                </form>
+            </div>
+        </div>
+
+        <div *ngFor="let news of newsData|serachnews:term " class="   mt-5 pt-5 col-md-4">
+            <div class="new   shadow-lg">
+                <h2 class=" pb-2 text-black text-center title rounded-3">{{news.title}}</h2>
+                <p class="   text-center  text-white"> {{news.desc.slice(0,200)}}</p>
+
+                <div class=" d-flex justify-content-evenly align-items-center">
+
+
+                    <h6 class=" mt-1 pb-3 mt-1 text-black text-center mt-3 rounded-3">{{news.createdAt |date}}</h6>
+                    <button id="btn" routerLink="/details/{{news._id}}" class=" btnNew btn text-center   fw-bolder">
+
+                        <div class=" d-flex justify-content-center align-items-center">
+                            <span> Read More</span> <i class="fa-solid fa-arrow-right-long ms-2 iconReadMore"></i>
+                        </div>
+                    </button>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+</div>

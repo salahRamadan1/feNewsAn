@@ -1,0 +1,29 @@
+.inputSearch{
+    border: none !important;
+}
+.new{
+      border-top: solid 2px rgba(252, 3, 177, 0.797);
+  
+ 
+    border-radius: 20px;
+    overflow: hidden;
+}
+.title{
+    background-color: rgb(220, 106, 222);
+}
+.dateHome{
+    margin-top: 5px;
+}
+ 
+.btnNew{
+    background: linear-gradient(-32deg, rgb(69, 104, 220), rgb(176, 106, 179)) !important;
+}
+.iconReadMore{
+    color: blueviolet;
+    /* font-size: 2rem; */
+    transition: all 0.5s;
+}
+.btnNew:hover .iconReadMore{
+    font-size: 2rem;
+    color: sienna;
+}

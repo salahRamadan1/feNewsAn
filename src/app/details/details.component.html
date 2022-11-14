@@ -1,0 +1,21 @@
+<div class=" container pt-5   ">
+    <div class="row mt-5 ">
+        <div *ngIf="err" class=" alert alert-danger">
+            {{err}}
+        </div>
+        <div *ngFor="let news of dataNewsDetails" class="    mt-5 pt-5 col-md-10 mx-auto">
+            <div class="new shadow-lg rounded-5">
+                <div>
+                    <h4 class="titleName  ms-2 mt-2  position-relative"> {{news.createdBy.name| uppercase }}</h4>
+                    <h2 class=" pb-2 text-black text-center title rounded-3"> {{news.title}}</h2>
+                </div>
+                <p class=" pt-5 text-center  text-white px-2 fw-bold"> {{news.desc}}</p>
+                <button routerLink="/home"
+                    class=" mb-1 mt-3 me-3 btnNew btn text-center mx-auto d-flex justify-content-center fw-bolder float-end">Back
+                    To Home</button>
+                <div class=" clearfix"></div>
+                <h5 class=" pb-3 mt-1 text-black text-center  rounded-3">{{news.createdAt |date}}</h5>
+            </div>
+        </div>
+    </div>
+</div>
